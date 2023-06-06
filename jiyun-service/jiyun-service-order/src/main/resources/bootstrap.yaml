@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: jiyun-service-order
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        port: 8719
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        namespace: ff94ba03-6594-4790-9bf6-806be8163f16
+#        group: DEFAULT_GROUP
+#        file-extension: yaml
+    loadbalancer:
+      nacos:
+        enabled: true # 手动开启nacos负载均衡,即便是引入了Nacos的依赖，但因为默认是使用的轮训，所以不生效。
+#  profiles:
+#    active: dev
+server:
+  port: 9003
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 2000
+        read-timeout: 5000
+
+#eureka:
+#  client:
+#    serviceUrl: # eureka server的路径
+#      defaultZone: http://localhost:8000/eureka/
+#  instance:
+#    #使用ip注册，否则会使用主机名注册了（此处考虑到对老版本的兼容，新版本经过实验都是ip）
+#    prefer-ip-address: true
+#    #自定义实例显示格式，加上版本号，便于多版本管理，注意是ip-address，早期版本是ipAddress
+#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version

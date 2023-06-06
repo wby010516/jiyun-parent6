@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/day02?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+  application:
+    name: jiyun-service-goods
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    loadbalancer:
+      nacos:
+        enabled: true # 手动开启nacos负载均衡,即便是引入了Nacos的依赖，但因为默认是使用的轮训，所以不生效。
+
+server:
+  port: 9001
+
+#eureka:
+#  client:
+#    serviceUrl: # eureka server的路径
+#      defaultZone: http://localhost:8000/eureka/
+#  instance:
+#    #使用ip注册，否则会使用主机名注册了（此处考虑到对老版本的兼容，新版本经过实验都是ip）
+#    prefer-ip-address: true
+#    #自定义实例显示格式，加上版本号，便于多版本管理，注意是ip-address，早期版本是ipAddress
+#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+
